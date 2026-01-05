@@ -15,31 +15,22 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-# NIXL Prometheus Telemetry exporter plug-in
+# NIXL DTS Telemetry exporter plug-in
 
-This telemetry exporter plug-in exports NIXL telemetry events in Prometheus format, by exposing an HTTP endpoint that can be scraped by Prometheus servers.
+This telemetry exporter plug-in exports NIXL telemetry events via Doca Telemetry Service(DTS), by exposing an HTTP endpoint that can be scraped by Prometheus servers.
 More detailed information on NIXL telemetry [docs/telemetry.md](../../../../docs/telemetry.md).
 
 ## Dependencies
 
-The Prometheus exporter requires the prometheus-cpp library, which is included as a subproject.
-
-libcurl is not downloaded automatically. To build, you need to install the libcurl package:
-
-```bash
-# Ubuntu/Debian
-sudo apt-get install libcurl4-openssl-dev
-# RHEL/CentOS/Fedora
-sudo dnf install libcurl-devel
-```
+DTS exporter requires doca being installed. [doca installation guide](https://docs.nvidia.com/doca/sdk/doca-host-installation-and-upgrade/index.html)
 
 ## Configuration
 
-To enable the Prometheus plug-in, set the following environment variables:
+To enable the DTS plug-in, set the following environment variables:
 
 ```bash
 export NIXL_TELEMETRY_ENABLE="y" # Enable NIXL telemetry
-export NIXL_TELEMETRY_EXPORTER="prometheus" # Sets which plug-in to select in format libtelemetry_exporter_${NIXL_TELEMETRY_EXPORTER}.so
+export NIXL_TELEMETRY_EXPORTER="dts" # Sets which plug-in to select in format libtelemetry_exporter_${NIXL_TELEMETRY_EXPORTER}.so
 ```
 
 ### Optional Configuration
@@ -48,13 +39,13 @@ You can configure the exposed prometheus port:
 
 ```bash
 # Default port is 9090
-export NIXL_TELEMETRY_PROMETHEUS_PORT="<port_num>"
+export NIXL_TELEMETRY_DTS_PROMETHEUS_PORT="<port_num>"
 ```
 
 Default addres is public, but you configure to expose prometheus endpoint only on localhost:
 
 ```bash
-export NIXL_TELEMETRY_PROMETHEUS_LOCAL="y"
+export NIXL_TELEMETRY_DTS_PROMETHEUS_LOCAL="y"
 # May also use "yes" or "1"
 ```
 
