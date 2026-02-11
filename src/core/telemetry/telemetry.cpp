@@ -59,11 +59,6 @@ nixlTelemetry::~nixlTelemetry() {
         NIXL_DEBUG << "Failed to cancel telemetry write timer: " << e.what();
         // continue anyway since it's not critical
     }
-
-    if (buffer_) {
-        writeEventHelper();
-        buffer_.reset();
-    }
 }
 
 void
